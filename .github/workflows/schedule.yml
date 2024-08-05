@@ -24,14 +24,6 @@ jobs:
     - name: Install dependencies
       run: npm install
 
-    - name: Check FB_EMAIL
-      run: |
-        if [ "${{ secrets.FB_EMAIL }}" = "jaredtran2001@gmail.com" ]; then
-          echo "FB_EMAIL is jared"
-        else
-          echo "FB_EMAIL is not jared"
-        fi
-
     - name: Run script
       env:
         FB_EMAIL: ${{ secrets.FB_EMAIL }}

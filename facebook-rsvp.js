@@ -9,7 +9,6 @@ const puppeteer = require('puppeteer');
 
     const email = process.env.FB_EMAIL;
     const password = process.env.FB_PASSWORD;
-    console.log("Email was: ", process.env.FB_EMAIL);
 
     await page.type('#email', email);
     await page.type('#pass', password);
@@ -27,6 +26,7 @@ const puppeteer = require('puppeteer');
         const links = Array.from(document.querySelectorAll('a'));
         return links.find(link => link.textContent.includes('invited you'))?.href;
     });
+    console.log("INVITE LINK: ",invitedYouLink);
 
     if (invitedYouLink) {
         await page.goto(invitedYouLink);

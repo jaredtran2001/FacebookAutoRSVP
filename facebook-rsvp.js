@@ -9,6 +9,7 @@ const puppeteer = require('puppeteer');
 
     const email = process.env.FB_EMAIL;
     const password = process.env.FB_PASSWORD;
+    console.log("Email was: ", process.env.FB_EMAIL);
 
     await page.type('#email', email);
     await page.type('#pass', password);

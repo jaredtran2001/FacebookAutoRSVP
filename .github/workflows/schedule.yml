@@ -24,4 +24,4 @@ jobs:
       env:
         FB_EMAIL: ${{ secrets.FB_EMAIL }}
         FB_PASSWORD: ${{ secrets.FB_PASSWORD }}
-      run: node facebook_rsvp.js
+      run: node facebook-rsvp.js

@@ -27,6 +27,7 @@ const puppeteer = require('puppeteer');
         return links.find(link => link.textContent.includes('invited you'))?.href;
     });
     console.log("INVITE LINK: ",invitedYouLink);
+    console.log(page.url());
 
     if (invitedYouLink) {
         await page.goto(invitedYouLink);

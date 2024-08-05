@@ -1,9 +1,19 @@
 const puppeteer = require('puppeteer');
 
 (async () => {
-    console.log("BOT STARTING ...")
-    const browser = await puppeteer.launch({ headless: true });
+    console.log("BOT STARTING ...");
+
+    // Launch the browser with specific arguments to disable sandboxing
+    const browser = await puppeteer.launch({
+        headless: true, // Run in headless mode
+        args: ['--no-sandbox', '--disable-setuid-sandbox'] // Disable sandboxing
+    });
     const page = await browser.newPage();
+
+    // Event listeners for debugging
+    page.on('console', msg => console.log('PAGE LOG:', msg.text()));
+    page.on('error', err => console.error('PAGE ERROR:', err));
+    page.on('pageerror', pageerr => console.error('PAGE ERROR:', pageerr));
 
     await page.goto('https://www.facebook.com');
 

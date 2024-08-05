@@ -1,6 +1,7 @@
 const puppeteer = require('puppeteer');
 
 (async () => {
+    console.log("BOT STARTING ...")
     const browser = await puppeteer.launch({ headless: false });
     const page = await browser.newPage();
 
@@ -34,8 +35,8 @@ const puppeteer = require('puppeteer');
         return;
     }
 
-    await new Promise(resolve => setTimeout(resolve, 3000)); // Wait for 3 seconds
-    await page.mouse.click(100, 200); // Replace with the coordinates of the overlay
+    await new Promise(resolve => setTimeout(resolve, 3000));
+    await page.mouse.click(100, 200); 
 
 
     const h1Text = await page.evaluate(() => {
@@ -43,8 +44,7 @@ const puppeteer = require('puppeteer');
         return h1Element ? h1Element.textContent : null;
     });
     const url = page.url();
-    console.log('New URL:', url);
-    console.log('Text content of <h1> tag:', h1Text);
+    console.log("Event found");
     if(h1Text && h1Text.includes("WVBA Wednesday")) {
         // Get the event id
         const regex = /events\/(\d+)\//;
@@ -59,7 +59,7 @@ const puppeteer = require('puppeteer');
 
         await page.goto(`https://www.facebook.com/events/${eventId}/?active_tab=discussion`);
         await new Promise(resolve => setTimeout(resolve, 3000)); // Wait for 3 seconds
-        await page.mouse.click(100, 200); // Replace with the coordinates of the overlay
+        await page.mouse.click(100, 200); 
 
         //Click Going so event won't show up anymore
         await page.click('div[aria-label="Going"]');

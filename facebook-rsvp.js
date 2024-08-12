@@ -1,4 +1,5 @@
 const puppeteer = require('puppeteer');
+const path = require('path');
 
 (async () => {
     console.log("BOT STARTING ...");

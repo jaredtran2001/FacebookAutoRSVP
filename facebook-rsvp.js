@@ -21,8 +21,12 @@ const puppeteer = require('puppeteer');
     const password = process.env.FB_PASSWORD;
 
     await page.type('#email', email);
+    await new Promise(resolve => setTimeout(resolve, 3000)); // Wait for 3 seconds
     await page.type('#pass', password);
     await page.click('[name="login"]');
+
+    await new Promise(resolve => setTimeout(resolve, 3000)); // Wait for 3 seconds
+    await page.screenshot({ path: path.join(__dirname, 'login-attempt.png'), fullPage: true });
 
     await page.waitForNavigation();
 
@@ -50,7 +54,7 @@ const puppeteer = require('puppeteer');
     await new Promise(resolve => setTimeout(resolve, 3000));
     await page.mouse.click(100, 200); 
 
-
+j
     const h1Text = await page.evaluate(() => {
         const h1Element = document.querySelector('h1');
         return h1Element ? h1Element.textContent : null;

@@ -32,3 +32,10 @@ jobs:
         FB_EMAIL: ${{ secrets.FB_EMAIL }}
         FB_PASSWORD: ${{ secrets.FB_PASSWORD }}
       run: node facebook-rsvp.js
+
+    - name: Upload login screenshot
+      if: always() # Always run this step to upload the screenshot even if the script fails
+      uses: actions/upload-artifact@v3
+      with:
+        name: login-attempt-screenshot
+        path: login-attempt.png

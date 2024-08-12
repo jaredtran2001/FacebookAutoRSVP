@@ -11,11 +11,6 @@ const path = require('path');
     });
     const page = await browser.newPage();
 
-    // Event listeners for debugging
-    page.on('console', msg => console.log('PAGE LOG:', msg.text()));
-    page.on('error', err => console.error('PAGE ERROR:', err));
-    page.on('pageerror', pageerr => console.error('PAGE ERROR:', pageerr));
-
     await page.goto('https://www.facebook.com');
 
     const email = process.env.FB_EMAIL;
@@ -24,12 +19,13 @@ const path = require('path');
     await page.type('#email', email);
     await new Promise(resolve => setTimeout(resolve, 3000)); // Wait for 3 seconds
     await page.type('#pass', password);
+    await new Promise(resolve => setTimeout(resolve, 1000)); // Wait for 3 seconds
     await page.click('[name="login"]');
+
+    await page.waitForNavigation();
 
     await new Promise(resolve => setTimeout(resolve, 3000)); // Wait for 3 seconds
     await page.screenshot({ path: path.join(__dirname, 'login-attempt.png'), fullPage: true });
-
-    await page.waitForNavigation();
 
     // Navigate to the events page
     await page.goto('https://www.facebook.com/events/invites');
